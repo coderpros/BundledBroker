@@ -1,0 +1,13 @@
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.BLL.dll.config
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.BLL.dll
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.BLL.pdb
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\EntityFramework.dll
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.DAL.dll
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.DAL.pdb
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\ThinkAnew.BundledBroker.DAL.dll.config
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\EntityFramework.xml
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\obj\Debug\ThinkAnew.BundledBroker.BLL.csprojResolveAssemblyReference.cache
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\obj\Debug\ThinkAnew.BundledBroker.BLL.dll
+D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.BLL\obj\Debug\ThinkAnew.BundledBroker.BLL.pdb

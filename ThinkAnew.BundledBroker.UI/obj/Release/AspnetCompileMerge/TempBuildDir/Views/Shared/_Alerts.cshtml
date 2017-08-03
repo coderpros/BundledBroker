@@ -1,0 +1,76 @@
+﻿@using ThinkAnew.BundledBroker.UI.Helpers
+@(Html.Kendo().Notification()
+                    .Name("alert-notification")
+                    .AppendTo("#alert-container")
+                    .AutoHideAfter(10000)
+                    .HideOnClick(true)
+                    .Button(true)
+                    .Animation(a => a.Enable(true))
+)
+
+@{
+    List<Alert> alerts = TempData.ContainsKey(ThinkAnew.BundledBroker.UI.Helpers.Alert.TempDataKey)
+                ? (List<ThinkAnew.BundledBroker.UI.Helpers.Alert>) TempData[ThinkAnew.BundledBroker.UI.Helpers.Alert.TempDataKey]
+                : new List<ThinkAnew.BundledBroker.UI.Helpers.Alert>();
+
+    @*
+        //bdo 06/08/2017 - The below is some old code that allows for a completely customized notification / alert experience. 
+
+                if (alerts.Any())
+                {
+                    foreach (var alert in alerts)
+                    {
+                        var dismissableClass = alert.Dismissable ? "alert-dismissable" : null;
+
+                        <div class="alert alert-@alert.AlertStyle @dismissableClass"
+                             style="padding: 1px 1px 1px 1px; ">
+                            @if (alert.Dismissable == true)
+                                {
+                                <button type="button"
+                                        class="ui-icon-close input-sm"
+                                        data-dismiss="alert"
+                                        style="color:silver;"
+                                        aria-hidden="true">
+                                    <img src="~/images/Valid_32p.png" align="middle">
+                                </button>
+                            }
+                            &nbsp; &nbsp; @Html.Raw(alert.Message)
+                        </div>
+                    }
+            <script type="text/javascript">
+                function ClearAlert() {
+                    //Autoclose success alert messages.  Leave all others visible
+                    $(".alert-success").delay(5000).slideUp(200, function () {
+
+                    });
+                };
+
+                ClearAlert();
+            </script>
+        }
+    *@
+
+    if (ViewData.ModelState.Keys.Any(k => ViewData.ModelState[k].Errors.Any()))
+    {
+        <section class="alert alert-warning row vertical-align">
+            <div class="warning-icon col-xs-3 col-md-2">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+            </div>
+            <div class="col-md-10 pull-left">
+                @Html.ValidationSummary(false, "The following input issues were detected:", new { @class = "" })
+            </div>
+        </section>
+    }
+}
+
+@if (alerts.Any())
+{
+    <script>
+        $(document).ready(function () {
+            @foreach (var alert in alerts)
+            {
+                <text>$('#alert-notification').data('kendoNotification').show('@alert.Message', '@alert.AlertStyle.ToLower()');</text>
+            }
+        });
+    </script>
+}

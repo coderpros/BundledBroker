@@ -1,0 +1,14 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.StandardContentPage>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+	Layout = "MasterDefault.cshtml";
+}
+<section class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                @CurrentPage.BodyContent
+            </div>
+        </div>
+    </div>
+</section>

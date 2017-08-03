@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ThinkAnew.BundledBroker.UI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="NoReplyEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">noreply@thinkanew.com</Value>
+    </Setting>
+    <Setting Name="SalesEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sales@thinkanew.com</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

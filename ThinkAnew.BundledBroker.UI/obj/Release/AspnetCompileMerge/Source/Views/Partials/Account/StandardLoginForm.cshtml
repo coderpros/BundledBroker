@@ -1,0 +1,126 @@
+﻿@model ThinkAnew.BundledBroker.UI.Models.LoginViewModel
+@using ClientDependency.Core.Mvc;
+@{
+    Html.RequiresCss("~/css/CenteredPage.css");
+}
+<section class="body-sign">
+    <div class="center-sign">
+        <!--
+        <a href="/" class="logo pull-left">
+            <img src="/Content/images/logo.png" height="54" alt="PBJSNAP">
+        </a>
+        -->
+        <!-- content -->
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#loginForm').validate({
+                    highlight: function (label) {
+                        $(label).closest('.form-group').removeClass('has-success').addClass('has-error');
+                    },
+                    success: function (label) {
+                        $(label).closest('.form-group').removeClass('has-error');
+                        label.remove();
+                    },
+                    errorPlacement: function (error, element) {
+                        var placement = element.closest('.input-group');
+                        if (!placement.get(0)) {
+                            placement = element;
+                        }
+                        if (error.text() !== '') {
+                            placement.after(error);
+                        }
+                    }
+                });
+
+                $('#btnLogin').click(function (e) {
+                    e.preventDefault();
+                    if ($('#loginForm').valid()) {
+                        AuthenticateUser();
+                    }
+                });
+
+                $('#btnLoginH').click(function (e) {
+                    e.preventDefault();
+                    if ($('#loginForm').valid()) {
+                        AuthenticateUser();
+                    }
+                });
+
+            });
+        </script>
+        <div class="panel panel-sign">
+            <div class="panel-title-sign mt-xl text-right">
+                <h2 class="title text-uppercase text-weight-bold m-none">
+                    <i class="fa fa-user mr-xs"></i> Sign In
+                </h2>
+            </div>
+            <div class="panel-body">
+                <div class="alert alert-danger" id="errormsg" style="display: none;"></div>
+                @using (Html.BeginUmbracoForm(@"Login", @"Account", FormMethod.Post,
+                new { enctype = @"multipart/form-data", role = @"form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mb-lg">
+                        @Html.LabelFor(m => m.UserName).
+                        <div class="input-group input-group-icon">
+                            @(Html.Kendo().TextBoxFor(m => m.UserName)
+                              .Name("Username")
+                              .HtmlAttributes(new { type = @"email", @class = @"form-control k-textbox-lg input-lg" })
+                            )
+                            <span class="input-group-addon">
+                                <span class="icon icon-lg">
+                                    <i class="fa fa-user"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <span>@Html.ValidationMessageFor(m => m.UserName)</span>
+                    </div>
+                    <div class="form-group mb-lg">
+                        <div class="clearfix">
+                            @Html.LabelFor(m => m.Password)
+                        </div>
+                        <div class="input-group input-group-icon">
+                            @(Html.Kendo().TextBoxFor(m => m.Password)
+                              .Name(@"Password")
+                              .HtmlAttributes(new { @type = @"password", @class = "form-control k-textbox-lg" })
+                            )
+                            <span class="input-group-addon">
+                                <span class="icon icon-lg">
+                                    <i class="fa fa-lock"></i>
+                                </span>
+                            </span>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName)
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="clearfix">
+                                <a href="~/forgot-password" class="pull-left">Lost Password?</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 text-right">
+                            @(Html.Kendo().Button()
+                              .Name(@"LoginButton")
+                              .Content(@"Sign In")
+                              .HtmlAttributes(new { @class = "k-primary" })
+                            )
+                        </div>
+                    </div>
+                    <p class="text-center">
+                        Don't have an account yet? <a href="~/register">Register!</a>
+                    </p>
+                }
+            </div>
+        </div>
+
+        <!-- end content -->
+        @*
+            <div class="text-center text-dark">
+                <span>Powered by</span>
+                <a href="http://www.thinkanew.com" title="Think Anew" target="_blank"><img src="/Content/images/thinkanew.png" style="vertical-align: bottom" height="40"></a>
+            </div>
+        *@
+    </div>
+</section>

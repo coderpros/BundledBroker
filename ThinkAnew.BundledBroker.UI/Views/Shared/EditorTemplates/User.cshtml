@@ -1,0 +1,204 @@
+﻿@model ThinkAnew.BundledBroker.UI.Models.UserViewModel
+
+<script>
+    jQuery.ajaxSettings.traditional = true;
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="popup-editor container">
+        @Html.ValidationSummary(true, @"", new { @class = @"text-danger" })
+        @Html.HiddenFor(model => model.UserId)
+        <div class="row">
+            <div class="col-md-3">
+                <h3>User Info</h3>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <h3>Account Info</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.FirstName)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.FirstName)
+                            @Html.ValidationMessageFor(model => model.FirstName, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UserName1)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.UserName1)
+                            @Html.ValidationMessageFor(model => model.UserName1, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.LastName)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.LastName)
+                            @Html.ValidationMessageFor(model => model.LastName, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UserName2)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.UserName2)
+                            @Html.ValidationMessageFor(model => model.UserName2, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Phone)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.Phone)
+                            @Html.ValidationMessageFor(model => model.Phone, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.Password1)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(model => model.Password1)
+                            @Html.ValidationMessageFor(model => model.Password1, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(m => m.UserRoles)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @(Html.Kendo().MultiSelectFor(m => m.UserRoles)
+                                  .Name(@"UserRoles")
+                                  .AutoBind(true)
+                                  .AutoClose(false)
+                                  .BindTo(Model.UserRoles)
+                                  .DataValueField(@"RoleId")
+                                  .DataTextField(@"RoleName")
+                                  .Filter(FilterType.Contains)
+                                  .Placeholder(@"Select Roles")
+                                  .DataSource(source =>
+                                  {
+                                      source.Read(read =>
+                                      {
+                                          read.Action(@"GetRoles", @"User");
+                                      })
+                                      .ServerFiltering(true);
+                                  })
+                            )
+                            @Html.ValidationMessageFor(model => model.UserRoles, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(m => m.Password2)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @Html.Kendo().TextBoxFor(m => m.Password2)
+                            @Html.ValidationMessageFor(model => model.Password2, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <div class="col-md-2">
+                        <div class="editor-label">
+                            @Html.LabelFor(model => model.UserGroups)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="editor-field">
+                            @(Html.Kendo().MultiSelectFor(m => m.UserGroups)
+                                  .Name(@"UserGroups")
+                                  .AutoBind(true)
+                                  .AutoClose(false)
+                                  .BindTo(Model.UserRoles)
+                                  .DataValueField(@"GroupId")
+                                  .DataTextField(@"GroupName")
+                                  .Filter(FilterType.Contains)
+                                  .Placeholder(@"Select Groups")
+                                  .DataSource(source =>
+                                  {
+                                      source.Read(read =>
+                                      {
+                                          read.Action(@"GetGroups", @"Group");
+                                      })
+                                      .ServerFiltering(true);
+                                  })
+                            )
+                            @Html.ValidationMessageFor(model => model.UserGroups, @"", new { @class = @"text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

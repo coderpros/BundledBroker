@@ -1,0 +1,958 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BundleModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AHTFacilityConnections">
+    <Key>
+      <PropertyRef Name="AHTFacilityConnectionId" />
+    </Key>
+    <Property Name="AHTFacilityConnectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" />
+    <Property Name="FriendlyPrefix" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="AttendingPhysicians">
+    <Key>
+      <PropertyRef Name="AttendingPhysicianId" />
+    </Key>
+    <Property Name="AttendingPhysicianId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="AttendingPhysicianName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ClaimDetails">
+    <Key>
+      <PropertyRef Name="ClaimDetailsId" />
+    </Key>
+    <Property Name="ClaimDetailsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="ClaimId" Type="int" Nullable="false" />
+    <Property Name="ResidentId" Type="int" Nullable="false" />
+    <Property Name="RowTypeId" Type="int" />
+    <Property Name="RevenueCodeId" Type="int" />
+    <Property Name="FacilityCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ItemDescription" Type="varchar" MaxLength="30" />
+    <Property Name="UnitCharge" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="TotalCharge" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="RoutineCosts" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="Multiplier" Type="decimal" Precision="15" Scale="6" />
+    <Property Name="CostOfServices" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="SortOrder" Type="int" />
+    <Property Name="RugRate" Type="decimal" Precision="15" Scale="2" />
+  </EntityType>
+  <EntityType Name="Claims">
+    <Key>
+      <PropertyRef Name="ClaimId" />
+    </Key>
+    <Property Name="ClaimId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="ResidentId" Type="int" Nullable="false" />
+    <Property Name="ClaimControlNumber" Type="bigint" Nullable="false" />
+    <Property Name="BillType" Type="varchar" MaxLength="4" />
+    <Property Name="FromDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="TotalIncome" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="TotalExpenses" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="GainLoss" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="ClaimTypeId" Type="int" />
+    <Property Name="PayerName" Type="varchar" MaxLength="100" />
+    <Property Name="DRGCodeId" Type="int" />
+  </EntityType>
+  <EntityType Name="ClaimTypes">
+    <Key>
+      <PropertyRef Name="ClaimTypeId" />
+    </Key>
+    <Property Name="ClaimTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClaimTypeCode" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="ClaimTypeDescription" Type="varchar" MaxLength="25" />
+  </EntityType>
+  <EntityType Name="ConnectionTypes">
+    <Key>
+      <PropertyRef Name="ConnectionTypeId" />
+    </Key>
+    <Property Name="ConnectionTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ConnectionDescription" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DRGCodes">
+    <Key>
+      <PropertyRef Name="DRGCodeID" />
+    </Key>
+    <Property Name="DRGCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DRGCode" Type="int" />
+    <Property Name="DRGDescription" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Episodes">
+    <Key>
+      <PropertyRef Name="EpisodeId" />
+    </Key>
+    <Property Name="EpisodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="ResidentId" Type="int" Nullable="false" />
+    <Property Name="ClaimId" Type="int" Nullable="false" />
+    <Property Name="Score" Type="int" />
+    <Property Name="ReferringHospitalId" Type="int" />
+    <Property Name="AttendingPhysicianId" Type="int" />
+  </EntityType>
+  <EntityType Name="Facilities">
+    <Key>
+      <PropertyRef Name="FacilityId" />
+    </Key>
+    <Property Name="FacilityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="FacilityCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FacilityName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Postal" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CountyId" Type="int" Nullable="false" />
+    <Property Name="FacilityIsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="FacilityConnections">
+    <Key>
+      <PropertyRef Name="FacilityConnectionId" />
+    </Key>
+    <Property Name="FacilityConnectionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="ConnectionTypeId" Type="int" />
+    <Property Name="ConnectionString" Type="varchar" MaxLength="1000" />
+    <Property Name="SQLServerName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="FacilityLookup">
+    <Key>
+      <PropertyRef Name="FacilityLookUpId" />
+    </Key>
+    <Property Name="FacilityLookUpId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" />
+    <Property Name="Cono" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="FacilityPullData">
+    <Key>
+      <PropertyRef Name="FacilityPullDataId" />
+    </Key>
+    <Property Name="FacilityPullDataId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="DRG" Type="int" />
+    <Property Name="LastDateOfPull" Type="datetime" />
+    <Property Name="LastClaimControlNumber" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="GroupId" />
+    </Key>
+    <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="MaxAllowedUsers" Type="int" Nullable="false" />
+    <Property Name="MaxAllowedFacilities" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Agreed_To_Baa" Type="bit" />
+    <Property Name="GroupIsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginHistory">
+    <Key>
+      <PropertyRef Name="LoginHistoryId" />
+    </Key>
+    <Property Name="LoginHistoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userid" Type="int" Nullable="false" />
+    <Property Name="LoginDate" Type="datetime" Nullable="false" />
+    <Property Name="IPAddress" Type="varchar" MaxLength="25" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ModelTypes">
+    <Key>
+      <PropertyRef Name="ModelTypeId" />
+    </Key>
+    <Property Name="ModelTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ModelTypeCode" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="ModelTypeDescription" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="OrderedResults">
+    <Key>
+      <PropertyRef Name="OrderedResultId" />
+    </Key>
+    <Property Name="OrderedResultId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SessionId" Type="int" Nullable="false" />
+    <Property Name="FacilityId" Type="int" />
+    <Property Name="RevenueCodeId" Type="int" />
+    <Property Name="DRG" Type="int" />
+    <Property Name="Residentname" Type="varchar" MaxLength="75" />
+    <Property Name="HICNumber" Type="varchar" MaxLength="20" />
+    <Property Name="BillType" Type="varchar" MaxLength="9" />
+    <Property Name="FromDate" Type="varchar" MaxLength="16" />
+    <Property Name="ENdDate" Type="varchar" MaxLength="16" />
+    <Property Name="RevenueCode" Type="varchar" MaxLength="20" />
+    <Property Name="ItenDescription" Type="varchar" MaxLength="100" />
+    <Property Name="UnitCharge" Type="varchar" MaxLength="17" />
+    <Property Name="Quantity" Type="varchar" MaxLength="8" />
+    <Property Name="TotalCharge" Type="varchar" MaxLength="17" />
+    <Property Name="RoutineCosts" Type="varchar" MaxLength="25" />
+    <Property Name="WorksheetC" Type="varchar" MaxLength="50" />
+    <Property Name="CostofServices" Type="varchar" MaxLength="50" />
+    <Property Name="TotalIncome" Type="varchar" MaxLength="25" />
+    <Property Name="SummaryTitle" Type="varchar" MaxLength="50" />
+    <Property Name="SummaryAmount" Type="decimal" Precision="15" Scale="2" />
+    <Property Name="RowType" Type="varchar" MaxLength="2" />
+    <Property Name="ClaimRowNumber" Type="int" />
+    <Property Name="ReportRowNumber" Type="int" />
+    <Property Name="ClaimControlNumber" Type="bigint" />
+    <Property Name="PayerName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ReferringHospitals">
+    <Key>
+      <PropertyRef Name="ReferringHospitalId" />
+    </Key>
+    <Property Name="ReferringHospitalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="HospitalName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Residents">
+    <Key>
+      <PropertyRef Name="ResidentId" />
+    </Key>
+    <Property Name="ResidentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="ResidentNumber" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="30" />
+    <Property Name="LastName" Type="varchar" MaxLength="30" />
+    <Property Name="HICNumber" Type="varchar" MaxLength="20" />
+    <Property Name="ModelTypeId" Type="int" />
+  </EntityType>
+  <EntityType Name="RevenueCodeMultipliers">
+    <Key>
+      <PropertyRef Name="RevenueCodeMultiplierId" />
+    </Key>
+    <Property Name="RevenueCodeMultiplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="RevenueCodeId" Type="int" Nullable="false" />
+    <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+    <Property Name="Multiplier" Type="decimal" Precision="15" Scale="6" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RevenueCodes">
+    <Key>
+      <PropertyRef Name="RevenueCodeId" />
+    </Key>
+    <Property Name="RevenueCodeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RevenueCode" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="RevenueCodeDescription" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleIsActive" Type="bit" />
+    <Property Name="RoleName" Type="varchar" MaxLength="50" />
+    <Property Name="RoleIsAssignable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RoutineCostOfCare">
+    <Key>
+      <PropertyRef Name="RoutineCostOfCareId" />
+    </Key>
+    <Property Name="RoutineCostOfCareId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+    <Property Name="EffectiveDate" Type="datetime" Nullable="false" />
+    <Property Name="RCCAmount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RowTypes">
+    <Key>
+      <PropertyRef Name="RowTypeId" />
+    </Key>
+    <Property Name="RowTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RowTypeCode" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="RowTypeDescription" Type="varchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="States">
+    <Key>
+      <PropertyRef Name="StateId" />
+    </Key>
+    <Property Name="StateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateName" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" MaxLength="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USCounties">
+    <Key>
+      <PropertyRef Name="USCountiesId" />
+    </Key>
+    <Property Name="USCountiesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StateId" Type="int" Nullable="false" />
+    <Property Name="CountyName" Type="varchar" MaxLength="75" />
+  </EntityType>
+  <EntityType Name="UserFacilities">
+    <Key>
+      <PropertyRef Name="UserFacilityid" />
+    </Key>
+    <Property Name="UserFacilityid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="FacilityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserGroups">
+    <Key>
+      <PropertyRef Name="UserGroupId" />
+    </Key>
+    <Property Name="UserGroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserLogins">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ResetIdentifier" Type="uniqueidentifier" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
+    <Property Name="UserIsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="UserRoleId" />
+    </Key>
+    <Property Name="UserRoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="UserIsActive" Type="bit" />
+  </EntityType>
+  <Association Name="FK_AHTFacilityConnections_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="0..1" />
+    <End Role="AHTFacilityConnections" Type="Self.AHTFacilityConnections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="AHTFacilityConnections">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AttendingPhysicians_Facilityid">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="AttendingPhysicians" Type="Self.AttendingPhysicians" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="AttendingPhysicians">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaimDetails_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaimDetails_RevenueCodeId">
+    <End Role="RevenueCodes" Type="Self.RevenueCodes" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RevenueCodes">
+        <PropertyRef Name="RevenueCodeId" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="RevenueCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ClaimDetails_RowTypeId">
+    <End Role="RowTypes" Type="Self.RowTypes" Multiplicity="0..1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RowTypes">
+        <PropertyRef Name="RowTypeId" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="RowTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Claims_ClaimId">
+    <End Role="Claims" Type="Self.Claims" Multiplicity="1" />
+    <End Role="ClaimDetails" Type="Self.ClaimDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Claims">
+        <PropertyRef Name="ClaimId" />
+      </Principal>
+      <Dependent Role="ClaimDetails">
+        <PropertyRef Name="ClaimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Claims_ClaimTypeId">
+    <End Role="ClaimTypes" Type="Self.ClaimTypes" Multiplicity="0..1" />
+    <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ClaimTypes">
+        <PropertyRef Name="ClaimTypeId" />
+      </Principal>
+      <Dependent Role="Claims">
+        <PropertyRef Name="ClaimTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Claims_DRGCodeId">
+    <End Role="DRGCodes" Type="Self.DRGCodes" Multiplicity="0..1" />
+    <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DRGCodes">
+        <PropertyRef Name="DRGCodeID" />
+      </Principal>
+      <Dependent Role="Claims">
+        <PropertyRef Name="DRGCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Claims_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="Claims">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Claims_ResidentId">
+    <End Role="Residents" Type="Self.Residents" Multiplicity="1" />
+    <End Role="Claims" Type="Self.Claims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residents">
+        <PropertyRef Name="ResidentId" />
+      </Principal>
+      <Dependent Role="Claims">
+        <PropertyRef Name="ResidentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Episodes_AttendingPhysicianId">
+    <End Role="AttendingPhysicians" Type="Self.AttendingPhysicians" Multiplicity="0..1" />
+    <End Role="Episodes" Type="Self.Episodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AttendingPhysicians">
+        <PropertyRef Name="AttendingPhysicianId" />
+      </Principal>
+      <Dependent Role="Episodes">
+        <PropertyRef Name="AttendingPhysicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Episodes_ClaimId">
+    <End Role="Claims" Type="Self.Claims" Multiplicity="1" />
+    <End Role="Episodes" Type="Self.Episodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Claims">
+        <PropertyRef Name="ClaimId" />
+      </Principal>
+      <Dependent Role="Episodes">
+        <PropertyRef Name="ClaimId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Episodes_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="Episodes" Type="Self.Episodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="Episodes">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Episodes_ReferringHospitalId">
+    <End Role="ReferringHospitals" Type="Self.ReferringHospitals" Multiplicity="0..1" />
+    <End Role="Episodes" Type="Self.Episodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferringHospitals">
+        <PropertyRef Name="ReferringHospitalId" />
+      </Principal>
+      <Dependent Role="Episodes">
+        <PropertyRef Name="ReferringHospitalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Episodes_ResidentId">
+    <End Role="Residents" Type="Self.Residents" Multiplicity="1" />
+    <End Role="Episodes" Type="Self.Episodes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Residents">
+        <PropertyRef Name="ResidentId" />
+      </Principal>
+      <Dependent Role="Episodes">
+        <PropertyRef Name="ResidentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facilities_FacilitiesId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="UserFacilities" Type="Self.UserFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="UserFacilities">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facilities_GroupId">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="Facilities">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Facilities_StateId">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="Facilities">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacilityConnections_ConnectionTypeId">
+    <End Role="ConnectionTypes" Type="Self.ConnectionTypes" Multiplicity="0..1" />
+    <End Role="FacilityConnections" Type="Self.FacilityConnections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ConnectionTypes">
+        <PropertyRef Name="ConnectionTypeId" />
+      </Principal>
+      <Dependent Role="FacilityConnections">
+        <PropertyRef Name="ConnectionTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacilityConnections_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="FacilityConnections" Type="Self.FacilityConnections" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="FacilityConnections">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacilityLookup_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="0..1" />
+    <End Role="FacilityLookup" Type="Self.FacilityLookup" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="FacilityLookup">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FacilityPullData_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="FacilityPullData" Type="Self.FacilityPullData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="FacilityPullData">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_loginhistory_users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="LoginHistory" Type="Self.LoginHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="LoginHistory">
+        <PropertyRef Name="Userid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferringHospitals_Facilityid">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="ReferringHospitals" Type="Self.ReferringHospitals" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="ReferringHospitals">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Residents_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="Residents" Type="Self.Residents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="Residents">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Residents_ModelTypeId">
+    <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="0..1" />
+    <End Role="Residents" Type="Self.Residents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ModelTypes">
+        <PropertyRef Name="ModelTypeId" />
+      </Principal>
+      <Dependent Role="Residents">
+        <PropertyRef Name="ModelTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RevenueCodeMultipliers_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="RevenueCodeMultipliers" Type="Self.RevenueCodeMultipliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="RevenueCodeMultipliers">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RevenueCodeMultipliers_RevenueCodeId">
+    <End Role="RevenueCodes" Type="Self.RevenueCodes" Multiplicity="1" />
+    <End Role="RevenueCodeMultipliers" Type="Self.RevenueCodeMultipliers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RevenueCodes">
+        <PropertyRef Name="RevenueCodeId" />
+      </Principal>
+      <Dependent Role="RevenueCodeMultipliers">
+        <PropertyRef Name="RevenueCodeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoutineCostOfCare_FacilityId">
+    <End Role="Facilities" Type="Self.Facilities" Multiplicity="1" />
+    <End Role="RoutineCostOfCare" Type="Self.RoutineCostOfCare" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Facilities">
+        <PropertyRef Name="FacilityId" />
+      </Principal>
+      <Dependent Role="RoutineCostOfCare">
+        <PropertyRef Name="FacilityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USCounties_StateId">
+    <End Role="States" Type="Self.States" Multiplicity="1" />
+    <End Role="USCounties" Type="Self.USCounties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="States">
+        <PropertyRef Name="StateId" />
+      </Principal>
+      <Dependent Role="USCounties">
+        <PropertyRef Name="StateId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserGroups_Groups">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="GroupId" />
+      </Principal>
+      <Dependent Role="UserGroups">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserGroups_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserGroups" Type="Self.UserGroups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserGroups">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLogins_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserLogins" Type="Self.UserLogins" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Roles">
+    <End Role="Roles" Type="Self.Roles" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoles_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_UserId">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserFacilities" Type="Self.UserFacilities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserFacilities">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="GenerateBundleReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacilityId" Type="int" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="ReportType" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="DRG" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GenerateScoreCardReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FacilityId" Type="int" Mode="In" />
+    <Parameter Name="UserID" Type="int" Mode="In" />
+    <Parameter Name="ReportType" Type="int" Mode="In" />
+    <Parameter Name="FromDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="PROPERCASE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+    <Parameter Name="str" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="SplitString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Input" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Character" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="Item" Type="nvarchar" MaxLength="1000" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <EntityContainer Name="BundleModelStoreContainer">
+    <EntitySet Name="AHTFacilityConnections" EntityType="Self.AHTFacilityConnections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AttendingPhysicians" EntityType="Self.AttendingPhysicians" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClaimDetails" EntityType="Self.ClaimDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Claims" EntityType="Self.Claims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ClaimTypes" EntityType="Self.ClaimTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ConnectionTypes" EntityType="Self.ConnectionTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DRGCodes" EntityType="Self.DRGCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Episodes" EntityType="Self.Episodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Facilities" EntityType="Self.Facilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacilityConnections" EntityType="Self.FacilityConnections" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacilityLookup" EntityType="Self.FacilityLookup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FacilityPullData" EntityType="Self.FacilityPullData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginHistory" EntityType="Self.LoginHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ModelTypes" EntityType="Self.ModelTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderedResults" EntityType="Self.OrderedResults" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferringHospitals" EntityType="Self.ReferringHospitals" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Residents" EntityType="Self.Residents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RevenueCodeMultipliers" EntityType="Self.RevenueCodeMultipliers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RevenueCodes" EntityType="Self.RevenueCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RoutineCostOfCare" EntityType="Self.RoutineCostOfCare" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RowTypes" EntityType="Self.RowTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="States" EntityType="Self.States" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USCounties" EntityType="Self.USCounties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserFacilities" EntityType="Self.UserFacilities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLogins" EntityType="Self.UserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AHTFacilityConnections_FacilityId" Association="Self.FK_AHTFacilityConnections_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="AHTFacilityConnections" EntitySet="AHTFacilityConnections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AttendingPhysicians_Facilityid" Association="Self.FK_AttendingPhysicians_Facilityid">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="AttendingPhysicians" EntitySet="AttendingPhysicians" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaimDetails_FacilityId" Association="Self.FK_ClaimDetails_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaimDetails_RevenueCodeId" Association="Self.FK_ClaimDetails_RevenueCodeId">
+      <End Role="RevenueCodes" EntitySet="RevenueCodes" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ClaimDetails_RowTypeId" Association="Self.FK_ClaimDetails_RowTypeId">
+      <End Role="RowTypes" EntitySet="RowTypes" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Claims_ClaimId" Association="Self.FK_Claims_ClaimId">
+      <End Role="Claims" EntitySet="Claims" />
+      <End Role="ClaimDetails" EntitySet="ClaimDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Claims_ClaimTypeId" Association="Self.FK_Claims_ClaimTypeId">
+      <End Role="ClaimTypes" EntitySet="ClaimTypes" />
+      <End Role="Claims" EntitySet="Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Claims_DRGCodeId" Association="Self.FK_Claims_DRGCodeId">
+      <End Role="DRGCodes" EntitySet="DRGCodes" />
+      <End Role="Claims" EntitySet="Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Claims_FacilityId" Association="Self.FK_Claims_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="Claims" EntitySet="Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Claims_ResidentId" Association="Self.FK_Claims_ResidentId">
+      <End Role="Residents" EntitySet="Residents" />
+      <End Role="Claims" EntitySet="Claims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Episodes_AttendingPhysicianId" Association="Self.FK_Episodes_AttendingPhysicianId">
+      <End Role="AttendingPhysicians" EntitySet="AttendingPhysicians" />
+      <End Role="Episodes" EntitySet="Episodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Episodes_ClaimId" Association="Self.FK_Episodes_ClaimId">
+      <End Role="Claims" EntitySet="Claims" />
+      <End Role="Episodes" EntitySet="Episodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Episodes_FacilityId" Association="Self.FK_Episodes_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="Episodes" EntitySet="Episodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Episodes_ReferringHospitalId" Association="Self.FK_Episodes_ReferringHospitalId">
+      <End Role="ReferringHospitals" EntitySet="ReferringHospitals" />
+      <End Role="Episodes" EntitySet="Episodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Episodes_ResidentId" Association="Self.FK_Episodes_ResidentId">
+      <End Role="Residents" EntitySet="Residents" />
+      <End Role="Episodes" EntitySet="Episodes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facilities_FacilitiesId" Association="Self.FK_Facilities_FacilitiesId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="UserFacilities" EntitySet="UserFacilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facilities_GroupId" Association="Self.FK_Facilities_GroupId">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="Facilities" EntitySet="Facilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Facilities_StateId" Association="Self.FK_Facilities_StateId">
+      <End Role="States" EntitySet="States" />
+      <End Role="Facilities" EntitySet="Facilities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacilityConnections_ConnectionTypeId" Association="Self.FK_FacilityConnections_ConnectionTypeId">
+      <End Role="ConnectionTypes" EntitySet="ConnectionTypes" />
+      <End Role="FacilityConnections" EntitySet="FacilityConnections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacilityConnections_FacilityId" Association="Self.FK_FacilityConnections_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="FacilityConnections" EntitySet="FacilityConnections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacilityLookup_FacilityId" Association="Self.FK_FacilityLookup_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="FacilityLookup" EntitySet="FacilityLookup" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FacilityPullData_FacilityId" Association="Self.FK_FacilityPullData_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="FacilityPullData" EntitySet="FacilityPullData" />
+    </AssociationSet>
+    <AssociationSet Name="FK_loginhistory_users" Association="Self.FK_loginhistory_users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="LoginHistory" EntitySet="LoginHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferringHospitals_Facilityid" Association="Self.FK_ReferringHospitals_Facilityid">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="ReferringHospitals" EntitySet="ReferringHospitals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Residents_FacilityId" Association="Self.FK_Residents_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="Residents" EntitySet="Residents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Residents_ModelTypeId" Association="Self.FK_Residents_ModelTypeId">
+      <End Role="ModelTypes" EntitySet="ModelTypes" />
+      <End Role="Residents" EntitySet="Residents" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RevenueCodeMultipliers_FacilityId" Association="Self.FK_RevenueCodeMultipliers_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="RevenueCodeMultipliers" EntitySet="RevenueCodeMultipliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RevenueCodeMultipliers_RevenueCodeId" Association="Self.FK_RevenueCodeMultipliers_RevenueCodeId">
+      <End Role="RevenueCodes" EntitySet="RevenueCodes" />
+      <End Role="RevenueCodeMultipliers" EntitySet="RevenueCodeMultipliers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoutineCostOfCare_FacilityId" Association="Self.FK_RoutineCostOfCare_FacilityId">
+      <End Role="Facilities" EntitySet="Facilities" />
+      <End Role="RoutineCostOfCare" EntitySet="RoutineCostOfCare" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USCounties_StateId" Association="Self.FK_USCounties_StateId">
+      <End Role="States" EntitySet="States" />
+      <End Role="USCounties" EntitySet="USCounties" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserGroups_Groups" Association="Self.FK_UserGroups_Groups">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="UserGroups" EntitySet="UserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserGroups_Users" Association="Self.FK_UserGroups_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserGroups" EntitySet="UserGroups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLogins_Users" Association="Self.FK_UserLogins_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserLogins" EntitySet="UserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Roles" Association="Self.FK_UserRoles_Roles">
+      <End Role="Roles" EntitySet="Roles" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoles_Users" Association="Self.FK_UserRoles_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserRoles" EntitySet="UserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_UserId" Association="Self.FK_Users_UserId">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserFacilities" EntitySet="UserFacilities" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

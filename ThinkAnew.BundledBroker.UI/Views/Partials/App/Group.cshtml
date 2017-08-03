@@ -1,0 +1,73 @@
+﻿<script>
+    function Group_OnEdit(e) {
+        if (!e.model.isNew()) {
+            $('#FacilityGrid').data('kendoGrid').dataSource.read();
+            $('#FacilityGrid').data('kendoGrid').dataSource.filter({
+                field: 'GroupId',
+                operator: 'eq',
+                value : e.model.GroupId
+            });
+        }
+    }
+</script>
+@(Html.Kendo().Grid<ThinkAnew.BundledBroker.UI.Models.GroupViewModel>()
+      .Name("GroupsGrid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.GroupId).Visible(false);
+          columns.Bound(c => c.GroupName);
+          columns.Bound(c => c.MaxAllowedUsers);
+          columns.Bound(c => c.MaxAllowedFacilities);
+          columns.Bound(c => c.AgreedToBaa);
+          columns.Bound(c => c.Active);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Create();
+      })
+      .Events(events => events.Edit("Group_OnEdit"))
+      .ColumnMenu()
+      .Editable(editable => editable.Mode(GridEditMode.PopUp))
+      .Navigatable()
+      .Selectable(selectable =>
+      {
+          selectable.Mode(GridSelectionMode.Multiple);
+          selectable.Type(GridSelectionType.Cell);
+      })
+      .Sortable(sortable =>
+      {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .Scrollable()
+      .ColumnMenu()
+      .Groupable()
+      .Reorderable(p => p.Columns(true))
+      .Resizable(p => p.Columns(true))
+      .Editable(editable =>
+      {
+          editable.Mode(GridEditMode.PopUp)
+              .TemplateName("Group")
+              .Window(window =>
+              {
+                  window.Animation(true)
+                      .AutoFocus(true)
+                      .Modal(false)
+                      .Draggable(true)
+                      .Resizable(resize => resize.Enabled(true))
+                      .Width(800);
+              });
+      })
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model =>
+          {
+              model.Id(p => p.GroupId);
+              model.Field(p => p.GroupId).Editable(false);
+          })
+          .Read(read => read.Action("Groups_Read", "Group"))
+          .Create(create => create.Action("Groups_Create", "Group"))
+          .Update(update => update.Action("Groups_Update", "Group"))
+          .Destroy(destroy => destroy.Action("Groups_Destroy", "Group"))
+      )
+)

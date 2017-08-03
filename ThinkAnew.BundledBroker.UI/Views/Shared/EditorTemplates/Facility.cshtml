@@ -1,0 +1,84 @@
+﻿@model ThinkAnew.BundledBroker.UI.Models.FacilityViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @*
+        <div class="editor center">
+            @Html.Kendo().TextBoxFor(m => m.GroupName).Enable(false).HtmlAttributes(new { @class="form-control center", style = "width: 90%" })
+        </div>
+    *@
+    <div class="editor-label">
+        @Html.LabelFor(m => m.GroupName)
+    </div>
+    <div class="editor-field">
+        @(Html.Kendo().DropDownListFor(m => m.GroupId)
+              .BindTo(ViewData["Groups"] as SelectList)
+              .DataTextField("Text")
+              .DataValueField("Value")
+        )
+    </div>
+    <div class="editor-label">
+        @Model.City
+        @Html.LabelFor(m => m.FacilityName)
+    </div>
+    <div class="editor-field">
+        @Html.Kendo().TextBoxFor(m => m.FacilityName)
+        @Html.ValidationMessageFor(m => m.FacilityName)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.FacilityCode)
+    </div>
+    <div class="editor-field">
+        @Html.Kendo().TextBoxFor(m => m.FacilityCode)
+        @Html.ValidationMessageFor(m => m.FacilityCode)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.City)
+    </div>
+    <div class="editor-field">
+        @Html.Kendo().TextBoxFor(m => m.City)
+        @Html.ValidationMessageFor(m => m.City)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.StateId)
+    </div>
+    <div class="editor-field">
+        @(Html.Kendo().DropDownListFor(m => m.StateId)
+            .BindTo(ViewData["States"] as SelectList)
+            .DataTextField("Text")
+            .DataValueField("Value")
+            .Events(events =>
+            {
+                events.Change("StateId_OnChange");
+            })
+              //.DataSource(dataSource => dataSource
+                  //.Read(read => read.Action("Groups_Read", "State"))
+              //)
+        )
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.Postal)
+    </div>
+    <div class="editor-field">
+        @Html.Kendo().MaskedTextBoxFor(m => m.Postal).Mask("#####")
+        @Html.ValidationMessageFor(m => m.Postal)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(m => m.CountyId)
+    </div>
+    <div class="editor-field">
+        @(Html.Kendo().DropDownListFor(m => m.CountyId)
+            .BindTo(ViewData["Counties"] as SelectList)
+            .DataTextField("Text")
+            .DataValueField("Value")
+        )
+    </div>
+    <div class="editor-label">
+        &nbsp;
+    </div>
+    <div class="editor-field">
+        @Html.Kendo().CheckBoxFor(m => m.FacilityIsActive)
+    </div>
+}

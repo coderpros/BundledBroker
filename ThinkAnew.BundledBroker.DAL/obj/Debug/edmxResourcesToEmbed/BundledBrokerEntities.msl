@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BundledBrokerModelStoreContainer" CdmEntityContainer="BundledBrokerEntities">
+    <EntitySetMapping Name="AHTFacilityConnections">
+      <EntityTypeMapping TypeName="BundledBrokerModel.AHTFacilityConnection">
+        <MappingFragment StoreEntitySet="AHTFacilityConnections">
+          <ScalarProperty Name="AHTFacilityConnectionId" ColumnName="AHTFacilityConnectionId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="FriendlyPrefix" ColumnName="FriendlyPrefix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttendingPhysicians">
+      <EntityTypeMapping TypeName="BundledBrokerModel.AttendingPhysician">
+        <MappingFragment StoreEntitySet="AttendingPhysicians">
+          <ScalarProperty Name="AttendingPhysicianId" ColumnName="AttendingPhysicianId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="AttendingPhysicianName" ColumnName="AttendingPhysicianName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClaimDetails">
+      <EntityTypeMapping TypeName="BundledBrokerModel.ClaimDetail">
+        <MappingFragment StoreEntitySet="ClaimDetails">
+          <ScalarProperty Name="ClaimDetailsId" ColumnName="ClaimDetailsId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+          <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+          <ScalarProperty Name="RowTypeId" ColumnName="RowTypeId" />
+          <ScalarProperty Name="RevenueCodeId" ColumnName="RevenueCodeId" />
+          <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="UnitCharge" ColumnName="UnitCharge" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+          <ScalarProperty Name="RoutineCosts" ColumnName="RoutineCosts" />
+          <ScalarProperty Name="Multiplier" ColumnName="Multiplier" />
+          <ScalarProperty Name="CostOfServices" ColumnName="CostOfServices" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="RugRate" ColumnName="RugRate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Claims">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Claim">
+        <MappingFragment StoreEntitySet="Claims">
+          <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+          <ScalarProperty Name="ClaimControlNumber" ColumnName="ClaimControlNumber" />
+          <ScalarProperty Name="BillType" ColumnName="BillType" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="TotalIncome" ColumnName="TotalIncome" />
+          <ScalarProperty Name="TotalExpenses" ColumnName="TotalExpenses" />
+          <ScalarProperty Name="GainLoss" ColumnName="GainLoss" />
+          <ScalarProperty Name="ClaimTypeId" ColumnName="ClaimTypeId" />
+          <ScalarProperty Name="PayerName" ColumnName="PayerName" />
+          <ScalarProperty Name="DRGCodeId" ColumnName="DRGCodeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ClaimTypes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.ClaimType">
+        <MappingFragment StoreEntitySet="ClaimTypes">
+          <ScalarProperty Name="ClaimTypeId" ColumnName="ClaimTypeId" />
+          <ScalarProperty Name="ClaimTypeCode" ColumnName="ClaimTypeCode" />
+          <ScalarProperty Name="ClaimTypeDescription" ColumnName="ClaimTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ConnectionTypes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.ConnectionType">
+        <MappingFragment StoreEntitySet="ConnectionTypes">
+          <ScalarProperty Name="ConnectionTypeId" ColumnName="ConnectionTypeId" />
+          <ScalarProperty Name="ConnectionDescription" ColumnName="ConnectionDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DRGCodes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.DRGCode">
+        <MappingFragment StoreEntitySet="DRGCodes">
+          <ScalarProperty Name="DRGCodeID" ColumnName="DRGCodeID" />
+          <ScalarProperty Name="DRGCode1" ColumnName="DRGCode" />
+          <ScalarProperty Name="DRGDescription" ColumnName="DRGDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Episodes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Episode">
+        <MappingFragment StoreEntitySet="Episodes">
+          <ScalarProperty Name="EpisodeId" ColumnName="EpisodeId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+          <ScalarProperty Name="ClaimId" ColumnName="ClaimId" />
+          <ScalarProperty Name="Score" ColumnName="Score" />
+          <ScalarProperty Name="ReferringHospitalId" ColumnName="ReferringHospitalId" />
+          <ScalarProperty Name="AttendingPhysicianId" ColumnName="AttendingPhysicianId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Facilities">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Facility">
+        <MappingFragment StoreEntitySet="Facilities">
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="FacilityCode" ColumnName="FacilityCode" />
+          <ScalarProperty Name="FacilityName" ColumnName="FacilityName" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Postal" ColumnName="Postal" />
+          <ScalarProperty Name="CountyId" ColumnName="CountyId" />
+          <ScalarProperty Name="FacilityIsActive" ColumnName="FacilityIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacilityConnections">
+      <EntityTypeMapping TypeName="BundledBrokerModel.FacilityConnection">
+        <MappingFragment StoreEntitySet="FacilityConnections">
+          <ScalarProperty Name="FacilityConnectionId" ColumnName="FacilityConnectionId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="ConnectionTypeId" ColumnName="ConnectionTypeId" />
+          <ScalarProperty Name="ConnectionString" ColumnName="ConnectionString" />
+          <ScalarProperty Name="SQLServerName" ColumnName="SQLServerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacilityLookups">
+      <EntityTypeMapping TypeName="BundledBrokerModel.FacilityLookup">
+        <MappingFragment StoreEntitySet="FacilityLookup">
+          <ScalarProperty Name="FacilityLookUpId" ColumnName="FacilityLookUpId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="Cono" ColumnName="Cono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FacilityPullDatas">
+      <EntityTypeMapping TypeName="BundledBrokerModel.FacilityPullData">
+        <MappingFragment StoreEntitySet="FacilityPullData">
+          <ScalarProperty Name="FacilityPullDataId" ColumnName="FacilityPullDataId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="DRG" ColumnName="DRG" />
+          <ScalarProperty Name="LastDateOfPull" ColumnName="LastDateOfPull" />
+          <ScalarProperty Name="LastClaimControlNumber" ColumnName="LastClaimControlNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Group">
+        <MappingFragment StoreEntitySet="Groups">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="MaxAllowedUsers" ColumnName="MaxAllowedUsers" />
+          <ScalarProperty Name="MaxAllowedFacilities" ColumnName="MaxAllowedFacilities" />
+          <ScalarProperty Name="Agreed_To_Baa" ColumnName="Agreed_To_Baa" />
+          <ScalarProperty Name="GroupIsActive" ColumnName="GroupIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LoginHistories">
+      <EntityTypeMapping TypeName="BundledBrokerModel.LoginHistory">
+        <MappingFragment StoreEntitySet="LoginHistory">
+          <ScalarProperty Name="LoginHistoryId" ColumnName="LoginHistoryId" />
+          <ScalarProperty Name="Userid" ColumnName="Userid" />
+          <ScalarProperty Name="LoginDate" ColumnName="LoginDate" />
+          <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ModelTypes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.ModelType">
+        <MappingFragment StoreEntitySet="ModelTypes">
+          <ScalarProperty Name="ModelTypeId" ColumnName="ModelTypeId" />
+          <ScalarProperty Name="ModelTypeCode" ColumnName="ModelTypeCode" />
+          <ScalarProperty Name="ModelTypeDescription" ColumnName="ModelTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderedResults">
+      <EntityTypeMapping TypeName="BundledBrokerModel.OrderedResult">
+        <MappingFragment StoreEntitySet="OrderedResults">
+          <ScalarProperty Name="OrderedResultId" ColumnName="OrderedResultId" />
+          <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="RevenueCodeId" ColumnName="RevenueCodeId" />
+          <ScalarProperty Name="DRG" ColumnName="DRG" />
+          <ScalarProperty Name="Residentname" ColumnName="Residentname" />
+          <ScalarProperty Name="HICNumber" ColumnName="HICNumber" />
+          <ScalarProperty Name="BillType" ColumnName="BillType" />
+          <ScalarProperty Name="FromDate" ColumnName="FromDate" />
+          <ScalarProperty Name="ENdDate" ColumnName="ENdDate" />
+          <ScalarProperty Name="RevenueCode" ColumnName="RevenueCode" />
+          <ScalarProperty Name="ItenDescription" ColumnName="ItenDescription" />
+          <ScalarProperty Name="UnitCharge" ColumnName="UnitCharge" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="TotalCharge" ColumnName="TotalCharge" />
+          <ScalarProperty Name="RoutineCosts" ColumnName="RoutineCosts" />
+          <ScalarProperty Name="WorksheetC" ColumnName="WorksheetC" />
+          <ScalarProperty Name="CostofServices" ColumnName="CostofServices" />
+          <ScalarProperty Name="TotalIncome" ColumnName="TotalIncome" />
+          <ScalarProperty Name="SummaryTitle" ColumnName="SummaryTitle" />
+          <ScalarProperty Name="SummaryAmount" ColumnName="SummaryAmount" />
+          <ScalarProperty Name="RowType" ColumnName="RowType" />
+          <ScalarProperty Name="ClaimRowNumber" ColumnName="ClaimRowNumber" />
+          <ScalarProperty Name="ReportRowNumber" ColumnName="ReportRowNumber" />
+          <ScalarProperty Name="ClaimControlNumber" ColumnName="ClaimControlNumber" />
+          <ScalarProperty Name="PayerName" ColumnName="PayerName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReferringHospitals">
+      <EntityTypeMapping TypeName="BundledBrokerModel.ReferringHospital">
+        <MappingFragment StoreEntitySet="ReferringHospitals">
+          <ScalarProperty Name="ReferringHospitalId" ColumnName="ReferringHospitalId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="HospitalName" ColumnName="HospitalName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Residents">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Resident">
+        <MappingFragment StoreEntitySet="Residents">
+          <ScalarProperty Name="ResidentId" ColumnName="ResidentId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="ResidentNumber" ColumnName="ResidentNumber" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="HICNumber" ColumnName="HICNumber" />
+          <ScalarProperty Name="ModelTypeId" ColumnName="ModelTypeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RevenueCodeMultipliers">
+      <EntityTypeMapping TypeName="BundledBrokerModel.RevenueCodeMultiplier">
+        <MappingFragment StoreEntitySet="RevenueCodeMultipliers">
+          <ScalarProperty Name="RevenueCodeMultiplierId" ColumnName="RevenueCodeMultiplierId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="RevenueCodeId" ColumnName="RevenueCodeId" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="Multiplier" ColumnName="Multiplier" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RevenueCodes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.RevenueCode">
+        <MappingFragment StoreEntitySet="RevenueCodes">
+          <ScalarProperty Name="RevenueCodeId" ColumnName="RevenueCodeId" />
+          <ScalarProperty Name="RevenueCode1" ColumnName="RevenueCode" />
+          <ScalarProperty Name="RevenueCodeDescription" ColumnName="RevenueCodeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="BundledBrokerModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleIsActive" ColumnName="RoleIsActive" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="RoleIsAssignable" ColumnName="RoleIsAssignable" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoutineCostOfCares">
+      <EntityTypeMapping TypeName="BundledBrokerModel.RoutineCostOfCare">
+        <MappingFragment StoreEntitySet="RoutineCostOfCare">
+          <ScalarProperty Name="RoutineCostOfCareId" ColumnName="RoutineCostOfCareId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+          <ScalarProperty Name="EffectiveDate" ColumnName="EffectiveDate" />
+          <ScalarProperty Name="RCCAmount" ColumnName="RCCAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RowTypes">
+      <EntityTypeMapping TypeName="BundledBrokerModel.RowType">
+        <MappingFragment StoreEntitySet="RowTypes">
+          <ScalarProperty Name="RowTypeId" ColumnName="RowTypeId" />
+          <ScalarProperty Name="RowTypeCode" ColumnName="RowTypeCode" />
+          <ScalarProperty Name="RowTypeDescription" ColumnName="RowTypeDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="BundledBrokerModel.State">
+        <MappingFragment StoreEntitySet="States">
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USCounties">
+      <EntityTypeMapping TypeName="BundledBrokerModel.USCounty">
+        <MappingFragment StoreEntitySet="USCounties">
+          <ScalarProperty Name="USCountiesId" ColumnName="USCountiesId" />
+          <ScalarProperty Name="StateId" ColumnName="StateId" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserFacilities">
+      <EntityTypeMapping TypeName="BundledBrokerModel.UserFacility">
+        <MappingFragment StoreEntitySet="UserFacilities">
+          <ScalarProperty Name="UserFacilityid" ColumnName="UserFacilityid" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FacilityId" ColumnName="FacilityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserGroups">
+      <EntityTypeMapping TypeName="BundledBrokerModel.UserGroup">
+        <MappingFragment StoreEntitySet="UserGroups">
+          <ScalarProperty Name="UserGroupId" ColumnName="UserGroupId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLogins">
+      <EntityTypeMapping TypeName="BundledBrokerModel.UserLogin">
+        <MappingFragment StoreEntitySet="UserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ResetIdentifier" ColumnName="ResetIdentifier" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="BundledBrokerModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="BundledBrokerModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="UserIsActive" ColumnName="UserIsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionName="BundledBrokerModel.Store.SplitString" FunctionImportName="SplitString">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="BundledBrokerModel.SplitString_Result">
+          <ScalarProperty Name="Item" ColumnName="Item" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GenerateBundleReport" FunctionName="BundledBrokerModel.Store.GenerateBundleReport" />
+    <FunctionImportMapping FunctionImportName="GenerateScoreCardReport" FunctionName="BundledBrokerModel.Store.GenerateScoreCardReport" />
+  </EntityContainerMapping>
+</Mapping>

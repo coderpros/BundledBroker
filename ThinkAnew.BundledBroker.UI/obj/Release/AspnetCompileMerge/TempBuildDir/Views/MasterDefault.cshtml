@@ -1,0 +1,65 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.MasterDefault>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using ClientDependency.Core.Mvc;
+@{
+    Layout = null;
+
+    Html.RequiresCssBundle("bootstrap")
+        .RequiresCssBundle("kendo")
+        .RequiresCssBundle("site");
+
+
+    Html.RequiresJsBundle("jQuery")
+        .RequiresJsBundle("jQueryValidation")
+        .RequiresJsBundle("bootstrap")
+        .RequiresJsBundle("globalScripts")
+        .RequiresJsBundle("kendo");
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="@Umbraco.Field(@"metaKeywords")" />
+    <meta name="description" content="@Umbraco.Field(@"metaDescription")">
+    <meta name="author" content="">
+    <title>@Umbraco.Field(@"pageTitle", altFieldAlias: @"pageName") | @Umbraco.Field(@"siteTitle", recursive: true)</title>
+
+    @Html.Raw(Html.RenderCssHere())
+    @Html.Raw(Html.RenderJsHere())
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <div id="wrapper">
+        <header id="header">
+            @Html.Partial(@"~/Views/Partials/TopNavigation.cshtml")
+            <div style="text-align: left;" id="alert-container">
+                @Html.Partial(@"_Alerts")
+            </div>
+        </header>
+
+        @RenderBody()
+
+        <footer id="footer">
+            @Html.Partial(@"~/Views/Partials/Footer.cshtml")
+        </footer>
+    </div>
+
+    <script>
+        $(function () {
+            $('form').kendoValidator();
+        });
+    </script>
+
+    @RenderSection(@"BottomScripts", required: false)
+</body>
+</html>

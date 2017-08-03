@@ -1,0 +1,70 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.BrokerApp>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    Layout = "MasterDefault.cshtml";
+}
+<section class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                @(Html.Kendo().Menu()
+                      .Name(@"AppMenu")
+                      .Animation(a => a.Enable(true))
+                      .Direction(MenuDirection.Right)
+                      .Items(items =>
+                      {
+                          items.Add()
+                              .Text(@"Users")
+                              .SpriteCssClasses(@"fa fa-user");
+                          items.Add()
+                              .Text(@"Groups")
+                              .SpriteCssClasses(@"fa fa-users")
+                              .HtmlAttributes(new { onclick = "appNavigate('groups');" });
+                          items.Add()
+                              .Text(@"Facilities")
+                              .SpriteCssClasses(@"fa fa-building")
+                              .HtmlAttributes(new { onclick = "appNavigate('facilities');" });
+                          items.Add()
+                              .Text(@"Storage")
+                              .SpriteCssClasses(@"fa fa-archive");
+                          items.Add()
+                              .Text(@"Reports")
+                              .SpriteCssClasses(@"fa fa-file-text");
+                          items.Add()
+                              .Text(@"Help")
+                              .SpriteCssClasses(@"fa fa-question-circle");
+                      })
+                      .Orientation(MenuOrientation.Vertical)
+                      .SecurityTrimming(true)
+                )
+            </div>
+            <div class="col-md-9">
+                <div id="appContainer" class="container-fluid" style="height: 500px;">
+                    App Container
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function appNavigate(widgetName) {
+        switch (widgetName) {
+        case "groups":
+            $.get('/umbraco/Surface/Group/Index',
+                function (data) {
+                    $('#appContainer').html(data);
+                });
+            break;
+        case "facilities":
+            $.get('/umbraco/Surface/Facility/Index',
+                function (data) {
+                    $('#appContainer').html(data);
+                });
+            break;
+        default:
+            throw "Unexpected appNavigate request received.";
+        }
+    }
+</script>

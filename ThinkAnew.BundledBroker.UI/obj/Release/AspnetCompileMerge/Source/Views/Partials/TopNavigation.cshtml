@@ -1,0 +1,98 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    // Model.Content is the current page that we're on
+    // AncestorsOrSelf is all of the ancestors this page has in the tree
+    // (1) means: go up to level 1 and stop looking for more ancestors when you get there
+    // First() gets the first ancestor found (the home page, on level 1)
+    var homePage = CurrentPage.AncestorsOrSelf(1).First();
+
+    // The menu items we want are all of the children of the homepage
+    // We also check if "Hide in navigation" is on in the menu, we shouldn't show hidden items
+    var menuItems = homePage.Children.Where(@"UmbracoNaviHide == false");
+    var logo = Umbraco.Field(@"logo", recursive: true);
+}
+<!-- Top Strip -->
+<div class="header-top color">
+    <div class="container">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <section id="personalMenuContainer" class="login-box">
+                @(Html.Kendo().Menu()
+                      .Name(@"PersonalMenu")
+                      .Items(items =>
+                      {
+                          items.Add()
+                              .Text(User.Identity.Name)
+                              .Items(children =>
+                              {
+                                  children.Add()
+                                      .Text(@"My Account")
+                                      .Url(@"~/manage-profile/");
+                                  children.Add()
+                                      .Separator(true);
+                                  children.Add()
+                                      .Text(@"Logout")
+                                      .Action(@"Logout", @"Account");
+                              });
+                      }))
+            </section>
+        }
+        @*
+            else
+            {
+                <section class="login-box">
+                    <span id="registerLink">
+                        <a href="#">Register</a>
+                    </span> |
+                    <span id="forgotPasswordLink">
+                        <a href="~/forgot-password">Forgot Password</a><br/>
+                    </span>
+                    @Html.Partial(@"Account/HorizontalLoginForm", new ThinkAnew.BundledBroker.UI.Models.LoginViewModel())
+                </section>
+            }
+        *@
+    </div>
+</div>
+<!-- Navigation -->
+<nav class="navbar navbar-default navbar-collapse" role="navigation">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <h1 class="logo">
+                <a class="navbar-brand page-scroll" href="/">
+                    @(!string.IsNullOrEmpty(logo.ToString()) ?
+                          Html.Raw($"<img src=\"{Umbraco.Media(logo.ToString()).Url}\" class=\"img-responsive col-xs-12\" style=\"max-width:275px;\" />") :
+                          CurrentPage.SiteTitle)
+                </a>
+            </h1>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav">
+                <li class="@(CurrentPage.Url == @"/" ? @"active" : null)"><a href="/">Home</a></li>
+                @foreach (var item in menuItems)
+                {
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        if (!item.hideWhenAuthenticated)
+                        {
+                            <li class="page-scroll @(CurrentPage.Id == item.Id ? @"active" : null)"><a href="@item.Url">@item.Name</a></li>
+                        }
+                    }
+                    else
+                    {
+                        <li class="page-scroll @(CurrentPage.Id == item.Id ? @"active" : null)"><a href="@item.Url">@item.Name</a></li>
+                    }
+
+                }
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>

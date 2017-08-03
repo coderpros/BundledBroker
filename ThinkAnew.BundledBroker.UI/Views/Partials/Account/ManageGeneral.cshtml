@@ -1,0 +1,110 @@
+﻿@model ThinkAnew.Providers.Models.CustomMembershipUser
+@*
+<div id="alert-container" class="row">
+    @Html.Partial(@"_Alerts")
+</div>
+*@
+
+@using (Html.BeginUmbracoForm(@"Manage", @"Account", FormMethod.Post,
+    new { enctype = @"multipart/form-data", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = @"col-sm-1 control-label" })
+        <div class="col-sm-4">
+            @(Html.Kendo().TextBoxFor(m => m.FirstName)
+                  .Name(@"FirstName")
+                  .HtmlAttributes(new { @class = @"" })
+            )
+            @Html.ValidationMessageFor(m => m.FirstName)
+        </div>
+        @Html.LabelFor(m => m.LastName, new { @class = @"col-sm-1 control-label" })
+        <div class="col-sm-4">
+            @(Html.Kendo().TextBoxFor(m => m.LastName)
+                  .Name(@"LastName")
+                  .HtmlAttributes(new { @class = @"" })
+            )
+            @Html.ValidationMessageFor(m => m.LastName)
+        </div>
+    </div>
+    <div class="row form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = @"col-sm-1 control-label" })
+        <div class="col-sm-4">
+            @(Html.Kendo().MaskedTextBoxFor(m => m.Phone)
+                  .Name(@"Phone")
+                  .Mask(@"(###) ###-####")
+                  .HtmlAttributes(new { @class = @"", type = @"tel" })
+            )
+            @Html.ValidationMessageFor(m => m.Phone)
+        </div>
+        @Html.LabelFor(m => m.Email, new { @class = @"col-sm-1 control-label" })
+        <div class="col-sm-4">
+            @(Html.Kendo().TextBoxFor(m => m.Email)
+                  .Name(@"Email")
+                  .HtmlAttributes(new { @class = @"", type = "email" })
+            )
+            @Html.ValidationMessageFor(m => m.Email)
+        </div>
+    </div>
+
+    if (string.IsNullOrEmpty(Model.UserName))
+    {
+        <div class="row form-group">
+            @Html.LabelFor(m => m.Password1, new { @class = @"col-sm-1 control-label" })
+            <div class="col-sm-4">
+                @(Html.Kendo().TextBoxFor(m => m.Password1)
+                      .Name(@"Password1")
+                      .HtmlAttributes(new { @class = @"", type = @"password" })
+                )
+                @Html.ValidationMessageFor(m => m.Password1)
+            </div>
+            @Html.LabelFor(m => m.Password2, new { @class = @"col-sm-1 control-label" })
+            <div class="col-sm-4">
+                @(Html.Kendo().TextBoxFor(m => m.Password2)
+                      .Name(@"Password2")
+                      .HtmlAttributes(new { @class = @"form-control text", type = @"password" })
+                )
+                @Html.ValidationMessageFor(m => m.Password2)
+            </div>
+        </div>
+    }
+
+    if (User.IsInRole("Admin") || User.IsInRole("SuperUser"))
+    {
+        <div class="row form-group">
+            @Html.LabelFor(m => m.CreationDate, new { @class = @"col-sm-1 control-label" })
+            <div class="col-sm-4">
+                @(Html.Kendo().DateTimePickerFor(m => m.CreationDate)
+                   .Name(@"CreationDate")
+                   .Enable(false)
+                   .HtmlAttributes(new { @class = @"" })
+                )
+            </div>
+            @Html.LabelFor(m => m.LastLoginDate, new { @class = @"col-sm-1 control-label" })
+            <div class="col-sm-4">
+                @(Html.Kendo().DatePickerFor(m => m.LastLoginDate)
+                   .Name(@"LastLoginDate")
+                   .Enable(false)
+                   .HtmlAttributes(new { @class = @"" })
+                )
+            </div>
+        </div>
+    }
+    <div class="row form-group">
+        <div class="col-sm-12">
+            @(Html.Kendo().Button()
+                .Name(@"SaveGeneralButton")
+                .Content(@"Save")
+                .HtmlAttributes(new { @class = @"k-primary" })
+                .Icon(@"save")
+            )
+            &nbsp;&nbsp;
+            @(Html.Kendo().Button()
+                .Name(@"ResetGeneralButton")
+                .Content(@"Reset")
+                .HtmlAttributes(new { type = @"reset" })
+                .Icon(@"reset")
+            )
+        </div>
+    </div>
+}

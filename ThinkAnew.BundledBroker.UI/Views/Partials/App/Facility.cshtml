@@ -1,0 +1,73 @@
+﻿
+@(Html.Kendo().Grid<ThinkAnew.BundledBroker.UI.Models.FacilityViewModel>()
+      .Name("FacilityGrid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.GroupName)
+            .Hidden(true);
+          columns.Bound(c => c.FacilityCode)
+            .Visible(false);
+          columns.Bound(c => c.FacilityName);
+          columns.Bound(c => c.City);
+          columns.Bound(c => c.Postal);
+          columns.Bound(c => c.LastClaimDate)
+            .Format("{0:MM/dd/yyyy}");
+          columns.Bound(c => c.LastPullDate)
+              .Format("{0:MM/dd/yyyy}");
+          columns.Bound(c => c.CountyId)
+            .Visible(false);
+          columns.Bound(c => c.FacilityIsActive)
+            .Visible(false);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Create();
+      })
+      .ColumnMenu()
+      .Editable(editable =>
+      {
+          editable.Mode(GridEditMode.PopUp)
+              .TemplateName("Facility")
+              .Window(window =>
+              {
+                  window.Animation(true)
+                      .AutoFocus(true)
+                      .Modal(true)
+                      .Draggable(true)
+                      .Resizable(resize => resize.Enabled(true))
+                      .Width(400);
+              });
+      })
+      .Navigatable()
+      .Selectable(selectable =>
+      {
+          selectable.Mode(GridSelectionMode.Multiple);
+          selectable.Type(GridSelectionType.Row);
+      })
+      .Events(events => events
+          .Edit("Facility_OnEdit")
+      )
+      .Sortable(sortable =>
+      {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .ColumnMenu()
+      .Groupable(x => x.Enabled(true).ShowFooter(true))
+      .Reorderable(p => p.Columns(true))
+      .Resizable(p => p.Columns(true))
+      .Filterable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model =>
+          {
+              model.Id(p => p.FacilityId);
+              model.Field(m => m.LastClaimDate).Editable(false);
+              model.Field(m => m.LastPullDate).Editable(false);
+          })
+          .Read(read => read.Action("Facilities_Read", "Facility"))
+          .Create(create => create.Action("Facilities_Create", "Facility"))
+          .Update(update => update.Action("Facilities_Update", "Facility"))
+          .Destroy(destroy => destroy.Action("Facilities_Destroy", "Facility"))
+      )
+)

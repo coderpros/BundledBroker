@@ -1,0 +1,27 @@
+﻿@model ThinkAnew.Providers.Models.CustomMembershipUser
+@{
+
+}
+<h4 class="umbraco-forms-caption">My Account</h4>
+<section id="manage-self">
+    @(Html.Kendo().TabStrip()
+          .Name(@"UserManagerTabStrip")
+          .Animation(true)
+          .Collapsible(true)
+          .Navigatable(true)
+          .Items(i =>
+          {
+              i.Add()
+                  .Text(@"General")
+                  .Selected(true)
+                  .Content(string.IsNullOrEmpty(Model.Email) ? Html.Action(@"CreateManageGeneral", @"Account").ToHtmlString() : Html.Action(@"ManageGeneral", @"Account", new {model = Model}).ToHtmlString());
+
+              if (!string.IsNullOrEmpty(Model.UserName))
+              {
+                  i.Add()
+                      .Text(@"Change Password")
+                      .Content(Html.Action(@"ResetPasswordForm", @"Account").ToHtmlString());
+              }
+          })
+    )
+</section>

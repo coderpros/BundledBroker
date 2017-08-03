@@ -1,0 +1,83 @@
+﻿@model ThinkAnew.BundledBroker.UI.Models.GroupViewModel
+@{
+    ViewBag.GroupId = Model.GroupId;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.GroupId)
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.GroupName)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().TextBoxFor(model => model.GroupName)
+                @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MaxAllowedUsers)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().NumericTextBoxFor(model => model.MaxAllowedUsers)
+                @Html.ValidationMessageFor(model => model.MaxAllowedUsers, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MaxAllowedFacilities)
+            </div>
+            <div class="editor-field">
+                @Html.Kendo().NumericTextBoxFor(model => model.MaxAllowedFacilities)
+                @Html.ValidationMessageFor(model => model.MaxAllowedFacilities, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AgreedToBaa)
+            </div>
+            <div class="editor-field">
+                <div class="checkbox">
+                    @Html.Kendo().CheckBoxFor(model => model.AgreedToBaa)
+                    @Html.ValidationMessageFor(model => model.AgreedToBaa, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Active)
+            </div>
+            <div class="editor-field">
+                <div class="checkbox">
+                    @Html.Kendo().CheckBoxFor(model => model.Active)
+                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        @*
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        *@
+        <div class="clear"></div>
+        <hr />
+        <h4>Users</h4>
+
+        <hr />
+        <h4>Facilities</h4>
+        @Html.Action(@"Index", @"Facility", new { groupId = Model.GroupId })
+    </div>
+}

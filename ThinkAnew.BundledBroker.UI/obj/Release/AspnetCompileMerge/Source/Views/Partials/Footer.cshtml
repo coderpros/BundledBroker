@@ -1,0 +1,28 @@
+﻿@inherits UmbracoTemplatePage
+@{
+    var logo = Umbraco.Field(@"footerLogo", recursive: true);
+}
+<div class="footer-copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <p>Copyright ©@DateTime.Now.Year.ToString() <a href="http://www.thinkanew.com">Think Anew</a> &amp; <a href="#">Bundled Broker</a>. <br /> <a href="#">Privacy Policy</a> | <a href="#">Cancellation Policy</a></p>
+            </div>
+            <div class="col-md-4 center">
+                <p>
+                    Powered by
+                    <a href="http://www.thinkanew.com/" title="Think Anew" target="_blank">
+                        @Html.Raw($"<img src=\"{Umbraco.Media(logo.ToString()).Url}\" class=\"footer-logo\" />")
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <ul class="social-icons">
+                    <li><a href="http://www.twitter.com/WeThinkAnew" target="_blank" rel="tooltip" title="" data-original-title="Twitter"><i class="fa white fa-twitter" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.facebook.com/thinkanew/" target="_blank" rel="tooltip" title="" data-original-title="Facebook"><i class="fa white fa-facebook" aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.linkedin.com/company/think-anew" target="_blank" rel="tooltip" title="" data-original-title="Linkedin"><i class="fa white fa-linkedin" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

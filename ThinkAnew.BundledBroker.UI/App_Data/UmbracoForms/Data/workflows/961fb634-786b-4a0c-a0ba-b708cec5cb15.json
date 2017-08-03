@@ -1,0 +1,16 @@
+{
+  "id": "961fb634-786b-4a0c-a0ba-b708cec5cb15",
+  "name": "Send template email to brandon.osborne@coderpro.net",
+  "form": "b518e8b8-daaa-4cda-b1de-03fc088d64ee",
+  "active": true,
+  "workflowTypeId": "17c61629-d984-4e86-b43b-a8407b3efea9",
+  "executesOn": "Submitted",
+  "settings": {
+    "Email": "brandon.osborne@coderpro.net",
+    "SenderEmail": "",
+    "Subject": "The Form '{form_name}' was submitted",
+    "RazorViewFilePath": "Forms/Emails/Example-Template.cshtml",
+    "Attachment": "False"
+  },
+  "sortOrder": 1
+}

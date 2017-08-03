@@ -1,0 +1,94 @@
+﻿
+<script>
+    //TODO: REFACTOR Facility_OnEdit and StateId_OnChange to be a single function.
+    function Facility_OnEdit(e) {
+        if (!e.model.isNew()) {
+            var stateId = new Number($('#StateId').val());
+            var countyId = new Number($('#CountyId').val());
+
+            if (countyId && stateId > 0) {
+                var countyDropDownList = $('#CountyId').data('kendoDropDownList');
+                var url = '/umbraco/Surface/County/GetByStateId?Id=' + stateId;
+
+                $.ajax({
+                    url: url
+                })
+                    .done(function (response) {
+                        console.debug(response);
+                        countyDropDownList.dataSource.data(response);
+                    });
+            }
+        }
+    }
+    function StateId_OnChange(e) {
+        var stateId = $('#StateId').val();
+        var countyDropDownList = $('#CountyId').data('kendoDropDownList');
+        var url = '/umbraco/Surface/County/GetByStateId?Id=' + stateId;
+
+        $.ajax({
+            url: url
+        })
+            .done(function (response) {
+                countyDropDownList.dataSource.data(response);
+            });
+    }
+</script>
+
+@(Html.Kendo().Grid<ThinkAnew.BundledBroker.UI.Models.FacilityViewModel>()
+      .Name("FacilityGrid")
+      .Columns(columns =>
+      {
+          columns.Bound(c => c.GroupName)
+              .Hidden(false);
+              //.Groupable(true);
+          columns.Bound(c => c.FacilityCode)
+            .Visible(false);
+          columns.Bound(c => c.FacilityName);
+          columns.Bound(c => c.City);
+          columns.Bound(c => c.Postal);
+          columns.Bound(c => c.CountyId)
+            .Visible(false);
+          columns.Bound(c => c.FacilityIsActive)
+            .Visible(false);
+          columns.Command(command => { command.Edit(); command.Destroy(); }).Width(180);
+      })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Create();
+      })
+      .ColumnMenu()
+      .Editable(editable =>
+      {
+          editable.Mode(GridEditMode.PopUp)
+          .TemplateName("Facility");
+      })
+      .Navigatable()
+      .Selectable(selectable =>
+      {
+          selectable.Mode(GridSelectionMode.Multiple);
+          selectable.Type(GridSelectionType.Row);
+      })
+      .Events(events => events
+          .Edit("Facility_OnEdit")
+      )
+      .Sortable(sortable =>
+      {
+          sortable.SortMode(GridSortMode.SingleColumn);
+      })
+      .ColumnMenu()
+      .Groupable(x => x.Enabled(true).ShowFooter(true))
+      .Reorderable(p => p.Columns(true))
+      .Resizable(p => p.Columns(true))
+      .Filterable()
+      .DataSource(dataSource => dataSource
+          .Ajax()
+          .Model(model =>
+          {
+              model.Id(p => p.FacilityId);
+          })
+          .Read(read => read.Action("Facilities_Read", "Facility"))
+          .Create(create => create.Action("Facilities_Create", "Facility"))
+          .Update(update => update.Action("Facilities_Update", "Facility"))
+          .Destroy(destroy => destroy.Action("Facilities_Destroy", "Facility"))
+      )
+)

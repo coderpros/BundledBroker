@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<preserve resultType="2" virtualPath="/App_Browsers/" hash="ffffffffd46f02bb" filehash="6ba304a3642dbd2e" flags="110000" assembly="App_Browsers" type="ASP.ApplicationBrowserCapabilitiesFactory">
+    <filedeps>
+        <filedep name="/App_Browsers/Form.browser" />
+        <filedep name="/App_Browsers/w3cvalidator.browser" />
+    </filedeps>
+</preserve>

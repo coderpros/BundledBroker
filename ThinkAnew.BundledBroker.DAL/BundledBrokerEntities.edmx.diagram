@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8da9b4c20a9e4cb88eee8a65694f71aa" Name="Diagram1">
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.AHTFacilityConnection" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.AttendingPhysician" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.ClaimDetail" Width="1.5" PointX="8.25" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Claim" Width="1.5" PointX="5.25" PointY="27.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.ClaimType" Width="1.5" PointX="3" PointY="28.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.ConnectionType" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.DRGCode" Width="1.5" PointX="3" PointY="30.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Episode" Width="1.5" PointX="7.5" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Facility" Width="1.5" PointX="3" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.FacilityConnection" Width="1.5" PointX="8.25" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.FacilityLookup" Width="1.5" PointX="5.25" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.FacilityPullData" Width="1.5" PointX="5.25" PointY="38.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Group" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.LoginHistory" Width="1.5" PointX="11.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.ModelType" Width="1.5" PointX="8" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.OrderedResult" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.ReferringHospital" Width="1.5" PointX="5.25" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Resident" Width="1.5" PointX="10.25" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.RevenueCodeMultiplier" Width="1.5" PointX="11.25" PointY="23.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.RevenueCode" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.Role" Width="1.5" PointX="12" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.RoutineCostOfCare" Width="1.5" PointX="5.25" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.RowType" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.State" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.USCounty" Width="1.5" PointX="3" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.UserFacility" Width="1.5" PointX="11.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.UserGroup" Width="1.5" PointX="6" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.UserLogin" Width="1.5" PointX="11.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.UserRole" Width="1.5" PointX="14.25" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ThinkAnew.BundledBroker.DAL.User" Width="1.5" PointX="9" PointY="14.125" IsExpanded="true" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_AHTFacilityConnections_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_AttendingPhysicians_Facilityid" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Episodes_AttendingPhysicianId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_ClaimDetails_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_ClaimDetails_RevenueCodeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_ClaimDetails_RowTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Claims_ClaimId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Claims_ClaimTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Claims_DRGCodeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Claims_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Claims_ResidentId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Episodes_ClaimId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_FacilityConnections_ConnectionTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Episodes_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Episodes_ReferringHospitalId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Episodes_ResidentId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Facilities_FacilitiesId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Facilities_GroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Facilities_StateId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_FacilityConnections_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_FacilityLookup_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_FacilityPullData_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_ReferringHospitals_Facilityid" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Residents_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_RevenueCodeMultipliers_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_RoutineCostOfCare_FacilityId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_UserGroups_Groups" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_loginhistory_users" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Residents_ModelTypeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_RevenueCodeMultipliers_RevenueCodeId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_UserRoles_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_USCounties_StateId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_UserGroups_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_UserLogins_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="ThinkAnew.BundledBroker.DAL.FK_UserRoles_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

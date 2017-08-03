@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<umbPackage>
+  <files>
+    <file>
+      <guid>Elmah.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Elmah.dll</orgName>
+    </file>
+    <file>
+      <guid>System.Data.SQLite.DLL</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>System.Data.SQLite.DLL</orgName>
+    </file>
+    <file>
+      <guid>Elmah.ascx</guid>
+      <orgPath>/umbraco/plugins/Terabyte/Elmah</orgPath>
+      <orgName>Elmah.ascx</orgName>
+    </file>
+    <file>
+      <guid>elmah.css</guid>
+      <orgPath>/umbraco/plugins/Terabyte/Elmah</orgPath>
+      <orgName>elmah.css</orgName>
+    </file>
+    <file>
+      <guid>ElmahDetail.aspx</guid>
+      <orgPath>/umbraco/plugins/Terabyte/Elmah</orgPath>
+      <orgName>ElmahDetail.aspx</orgName>
+    </file>
+    <file>
+      <guid>Terabyte.Umbraco.Elmah.dll</guid>
+      <orgPath>/bin</orgPath>
+      <orgName>Terabyte.Umbraco.Elmah.dll</orgName>
+    </file>
+  </files>
+  <info>
+    <package>
+      <name>Terabyte Elmah</name>
+      <version>0.6</version>
+      <license url="http://www.opensource.org/licenses/mit-license.php">Package = MIT license, Elmah = Apache 2.0 License</license>
+      <url>-</url>
+      <requirements>
+        <major>3</major>
+        <minor>0</minor>
+        <patch>0</patch>
+      </requirements>
+    </package>
+    <author>
+      <name>Murray Roke</name>
+      <website>http://www.terabyte.co.nz</website>
+    </author>
+    <readme><![CDATA[<strong>Add these elements to your dashboard.config</strong>
+ &lt;section&gt;
+    &lt;areas&gt;
+      &lt;area&gt;developer&lt;/area&gt;
+    &lt;/areas&gt;
+    &lt;tab caption=&quot;Error Log&quot;&gt;
+      &lt;control&gt;/umbraco/plugins/Terabyte/Elmah/Elmah.ascx&lt;/control&gt;
+    &lt;/tab&gt;
+  &lt;/section&gt;
+
+
+<strong>Add these elements to your web.config</strong>
+
+
+&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;
+	&lt;configSections&gt;
+		&lt;sectionGroup name=&quot;elmah&quot;&gt;
+			&lt;section name=&quot;security&quot; type=&quot;Elmah.SecuritySectionHandler, Elmah&quot;/&gt;
+			&lt;section name=&quot;errorLog&quot; type=&quot;Elmah.ErrorLogSectionHandler, Elmah&quot;/&gt;
+			&lt;section name=&quot;errorMail&quot; type=&quot;Elmah.ErrorMailSectionHandler, Elmah&quot;/&gt;
+			&lt;section name=&quot;errorFilter&quot; type=&quot;Elmah.ErrorFilterSectionHandler, Elmah&quot;/&gt;
+		&lt;/sectionGroup&gt;
+	&lt;/configSections&gt;
+
+	&lt;elmah&gt;
+		&lt;security allowRemoteAccess=&quot;no&quot;/&gt;
+		&lt;errorLog type=&quot;Elmah.SQLiteErrorLog, Elmah&quot; connectionStringName=&quot;ELMAH.SQLite&quot;/&gt;
+		&lt;!--&lt;errorMail from=&quot;example@example.com&quot; to=&quot;example@example.com&quot; priority=&quot;Normal&quot; /&gt;--&gt;
+		&lt;errorFilter&gt;
+			&lt;test&gt;
+				&lt;equal binding=&quot;HttpStatusCode&quot; value=&quot;404&quot; type=&quot;Int32&quot;/&gt;
+			&lt;/test&gt;
+		&lt;/errorFilter&gt;
+	&lt;/elmah&gt;
+	&lt;connectionStrings&gt;
+		&lt;add name=&quot;ELMAH.SQLite&quot; connectionString=&quot;Data Source=~/App_Data/elmahDatabase.s3db.config&quot; /&gt;
+	&lt;/connectionStrings&gt;
+
+	&lt;system.web&gt;
+
+		&lt;httpModules&gt;
+			&lt;!-- ELMAH --&gt;
+			&lt;add name=&quot;ErrorMail&quot; type=&quot;Elmah.ErrorMailModule, Elmah&quot;/&gt;
+			&lt;add name=&quot;ErrorLog&quot; type=&quot;Elmah.ErrorLogModule, Elmah&quot;/&gt;
+			&lt;add name=&quot;ErrorFilter&quot; type=&quot;Elmah.ErrorFilterModule, Elmah&quot;/&gt;
+		&lt;/httpModules&gt;
+	&lt;/system.web&gt;
+&lt;/configuration&gt;
+]]></readme>
+  </info>
+  <DocumentTypes />
+  <Templates />
+  <Stylesheets />
+  <Macros />
+  <DictionaryItems />
+  <Languages />
+  <DataTypes />
+</umbPackage>

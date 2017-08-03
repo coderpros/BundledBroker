@@ -1,0 +1,26 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Wednesday, May 31, 2017 6:46:21 AM
+   Source : D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.UI\Umbraco\
+     Dest : D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.UI\App_Data\NuGetBackup\20170531-064621\Umbraco\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	D:\Projects\ThinkAnew\ThinkAnew\ThinkAnew.BundledBroker.UI\Umbraco\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         0         0         0         0         0         0
+   Bytes :         0         0         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Wednesday, May 31, 2017 6:46:21 AM
+
